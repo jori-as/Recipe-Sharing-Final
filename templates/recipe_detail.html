@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Receipe Details{% endblock %}
+
+{% block content %}
+<div class="card login-card mx-auto" style="max-width: 100%;">
+    <div class="card-header">
+        <h2>{{ recipe.title }}</h2>
+        {% if is_owner %}
+        <div class="btn-group">
+            <a href="{% url 'home:update_recipe' recipe.id %}" class="btn btn-sm btn-warning">Edit</a>
+            <a href="{% url 'home:delete_recipe' recipe.id %}" class="btn btn-sm btn-danger">Delete</a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                {% if recipe.image %}
+                <img src="{{ recipe.image.url }}" class="img-fluid mb-3">
+                {% endif %}
+                <p class="text-muted">Created by: {{ recipe.created_by.get_full_name }}</p>
+                <p class="text-muted">Posted on: {{ recipe.created_at|date:"M d, Y" }}</p>
+            </div>
+            <div class="col-md-8">
+                
+                <div class="mb-4">
+                    <h4 style="color: #F1E3D3; font-size: 1.5rem;">Description</h4>
+                    <div class="card-header">
+                    <p style="color: #1B4D3E; font-size: 1.1rem;">{{ recipe.description }}</p>
+                </div>
+                </div>
+
+                <div class="mb-4">
+                    <h4 style="color: #F1E3D3; font-size: 1.5rem;">Ingredients</h4>
+                    <div class="card-header">
+                    <pre style="color: #1B4D3E; font-size: 1.1rem; white-space: pre-wrap;">{{ recipe.ingredients }}</pre>
+                </div>
+                </div>
+
+                <div class="mb-4">
+                    <h4 style="color: #F1E3D3; font-size: 1.5rem;">Instructions</h4>
+                    <div class="card-header">
+                    <pre style="color: #1B4D3E; font-size: 1.1rem; white-space: pre-wrap;">{{ recipe.instructions }}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4 style="color: #F1E3D3; font-size: 1.5rem;">Reviews</h4>
+        {% for review in recipe.reviews.all %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <h5>{{ review.user.username }}</h5>
+                <p class="text-muted">{{ review.created_at|timesince }} ago</p>
+                <p style="color: #1B4D3E;">{{ review.comment }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted">No reviews yet.</p>
+        {% endfor %}
+
+        {% if user.is_authenticated %}
+        <form method="POST" class="mt-4">
+            {% csrf_token %}
+            {{ review_form.as_p }}
+            <div class="text-center mt-5">
+                <button type="submit" class="btn btn-primary px-5 py-2">
+                    Add review
+                </button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

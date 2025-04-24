@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href = "{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="card login-card text-center">
+    <div class="card-header">
+        <img src="{% static 'images/logo.png' %}" alt="Recipe Logo" class="mb-3" style="width: 60px;">
+        <br>
+        {% if messages %}
+    <div class="messages">
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    </div>
+        {% endif %}
+        <br>
+        Login to Your Account
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{% url 'home:login' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <p class="mt-3">Don't have an account? <a href="{% url 'home:register' %}" class="text-light">register here</a></p>
+    </div>
+</div>
+
+{% endblock %}

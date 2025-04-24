@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}All Receipe{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href = "{% static 'css/style.css' %}">
+{% endblock %}
+{% block content %}
+<div class="card login-card mx-auto" style="max-width: 1200px;">
+    <div class="card-header">
+        <h1 style="text-align: center;">All Recipes</h1>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover table-striped table-bordered">
+            <thead class="thead-custom">
+                <tr style="text-align: center;">
+                    <th class="w-25">Title</th>
+                    <th class="w-35">Description</th>
+                    <th class="w-20">Image</th>
+                    <th class="w-20 text-center">Details</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-custom" style="background-color: #275144;
+  color: #F1E3D3;">
+                {% for recipe in recipes %}
+                <tr class="recipe-row align-middle ">
+                    <td class="font-weight-bold">{{ recipe.title }}</td>
+                    <td>{{ recipe.description|truncatechars:50 }}</td>
+                    <td>
+                        {% if recipe.image %}
+                        <img src="{{ recipe.image.url }}" 
+                             class="img-thumbnail recipe-image d-block mx-auto">
+                        {% else %}
+                        <span class="text-muted">No image</span>
+                        {% endif %}
+                    </td>
+                    <td class="text-center">
+                        <a href="{% url 'home:recipe_detail' recipe.id %}" 
+                           class="btn btn-primary btn-sm px-4">
+                            View Recipe
+                        </a>
+                    </td>
+                </tr>
+                {% empty %} <tr>
+                    <td colspan="4" class="text-center text-muted py-4">
+                       <p style="color: #F1E3D3;"> No recipes found.</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href = "{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="hero mb-5">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h1 class="display-4 mb-4" style="color: #1B4D3E; font-weight: bold;">
+                 Recipe sharing website
+                </h1>
+                <p class="lead mb-4" style="color: #E07A5F;">
+                    Join our community of food lovers and explore thousands of delicious recipes
+                </p>
+                <a href="{% url 'home:recipes' %}" class="btn btn-lg" style="background-color: #F1E3D3; color: #1B4D3E;">
+                    Explore Recipes Now
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="featured-recipes mb-5">
+    <div class="container">
+        <h2 class="text-center mb-4" style="color: #1B4D3E;">Share & Discover Amazing Recipes</h2>
+        <div class="row">
+        
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <img src="{% static 'images/img1.png' %}" class="card-img-top" alt="Recipe" style="height: 200px; object-fit: cover;">
+                    
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <img src="{% static 'images/img2.png' %}"class="card-img-top" alt="Recipe" style="height: 200px; object-fit: cover;">
+                   
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <img src="{% static 'images/img3.png' %}" class="card-img-top" alt="Recipe" style="height: 200px; object-fit: cover;">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="features mb-5 py-5" style="background-color: rgba(27, 77, 62, 0.1);">
+  <div class="container">
+      <div class="row text-center">
+          <div class="col-md-4 mb-4">
+              <i class="fas fa-utensils fa-3x mb-3" style="color: #1B4D3E;"></i>
+              <h4 style="color: #1B4D3E;">Share Your Creations</h4>
+              <p style="color: #E07A5F;">Upload and share your favorite recipes with the community</p>
+          </div>
+          <div class="col-md-4 mb-4">
+              <i class="fas fa-comments fa-3x mb-3" style="color: #1B4D3E;"></i>
+              <h4 style="color: #1B4D3E;">Connect with Cooks</h4>
+              <p style="color: #E07A5F;">Discuss recipes and get feedback from other food enthusiasts</p>
+          </div>
+          <div class="col-md-4 mb-4">
+              <i class="fas fa-star fa-3x mb-3" style="color: #1B4D3E;"></i>
+              <h4 style="color: #1B4D3E;">Discover Recipes</h4>
+              <p style="color: #E07A5F;">Discover Amazing Recipes and have fun</p>
+          </div>
+      </div>
+  </div>
+</section>
+{% endblock %}

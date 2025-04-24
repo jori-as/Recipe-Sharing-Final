@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384
+9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+     <title> myRecipes {% block title %} {% endblock %} </title>
+     <link rel="stylesheet" href = "{% static 'css/style.css' %}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    {% block head %}{% endblock %}
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <nav class="navbar navbar-expand-lg navbar-dark shadow" style="background-color: #690B22;">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="{% static 'images/logo.png' %}" alt="Logo" width="80" height="40" class="d-inline-block align-top mr-2">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="{% url 'home:index' %}">Home</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="{% url 'home:recipes' %}">All Recipes</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="{% url 'home:add_recipe' %}">Add Recipe</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="{% url 'home:login' %}">Login</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link btn btn-outline-f1e3d3" href="{% url 'home:register' %}">Register</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+        
+          <main class="flex-grow-1 container mt-4"> 
+            {% block content %}
+            {% endblock %}
+          </main>
+<br/><br/><br/><br/><br/>
+
+          <footer class="footer py-4 mt-auto" style="background-color: #1B4D3E; color: #F1E3D3;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <h5>About Us</h5>
+                        <p>Sharing culinary inspiration since 2025</p>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <h5>Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url 'home:recipes' %}" style="color: #F1E3D3;">All Recipes</a></li>
+                            <li><a href="{% url 'home:add_recipe' %}" style="color: #F1E3D3;">Add Recipe</a></li>
+                            <li><a href="{% url 'home:login' %}" style="color: #F1E3D3;">Login</a></li>
+                            <li><a href="{% url 'home:register' %}" style="color: #F1E3D3;">Register</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <h5>Follow Us</h5>
+                        <a href="#" class="text-light mr-2"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="#" class="text-light mr-2"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-pinterest fa-2x"></i></a>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <p>&copy; 2025 Myrecipes. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+</body>
+</html>

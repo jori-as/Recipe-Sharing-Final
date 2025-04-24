@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Update Recipe{% endblock %}
+{% block head %}
+<link rel="stylesheet" href = "{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="card login-card mx-auto" style="max-width: 800px;">
+    <div class="card-header">
+        <h2 style="text-align: center;">Edit Recipe: {{ recipe.title }}</h2>
+    </div>
+    <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="text-center mt-5">
+                <button type="submit" class="btn btn-primary px-5 py-2">Save changes</button>
+                <a href="{% url 'home:recipe_detail' recipe_id=recipe.id %}" class="btn btn-primary px-5 py-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
